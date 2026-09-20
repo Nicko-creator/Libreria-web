@@ -1,0 +1,837 @@
+/* =============================================
+   DERRY BOOKS - SOBRE STEPHEN KING
+   ============================================= */
+
+
+/* =============================================
+   COLORES
+   ============================================= */
+
+:root {
+  --ink: #17130f;
+  --ink-soft: #2a2320;
+
+  --paper: #f6f2ea;
+  --paper-dim: #efe9dd;
+
+  --line: #e1d8c6;
+
+  --blood: #9c2b2b;
+  --blood-dark: #6f1d1d;
+
+  --gold: #c9a24b;
+
+  --muted: #6d6459;
+
+  --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+
+/* =============================================
+   GENERAL
+   ============================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+
+  font-family: var(--sans);
+
+  background: var(--paper);
+
+  color: var(--ink);
+
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* =============================================
+   HEADER
+   MISMO TAMAÑO QUE TU PÁGINA ORIGINAL
+   ============================================= */
+
+.site-header {
+  background: var(--ink);
+
+  color: #efe6d8;
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 40;
+
+  border-bottom: 1px solid #000;
+}
+
+
+.header-inner {
+  max-width: 1440px;
+
+  margin: 0 auto;
+
+  padding: 8px 40px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 35px;
+}
+
+
+/* =============================================
+   LOGO
+   ============================================= */
+
+.brand {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  flex-shrink: 0;
+}
+
+
+.brand-logo {
+  width: 60px;
+
+  height: 60px;
+
+  object-fit: contain;
+
+  display: block;
+}
+
+
+/* =============================================
+   NAVEGACIÓN
+   ============================================= */
+
+.main-nav {
+  display: flex;
+
+  gap: 30px;
+
+  flex: 1;
+}
+
+
+.main-nav a {
+  font-size: 14.5px;
+
+  color: #cfc4b2;
+
+  padding-bottom: 4px;
+
+  border-bottom: 2px solid transparent;
+
+  transition:
+    color .15s ease,
+    border-color .15s ease;
+
+  white-space: nowrap;
+}
+
+
+.main-nav a:hover {
+  color: #f4ede0;
+}
+
+
+.main-nav a.active {
+  color: #f4ede0;
+
+  border-bottom-color: var(--blood);
+}
+
+
+/* =============================================
+   PÁGINA SOBRE STEPHEN KING
+   ============================================= */
+
+.author-page {
+  padding: 55px 40px 80px;
+
+  background: var(--paper);
+
+  min-height: calc(100vh - 77px);
+}
+
+
+/* =============================================
+   TARJETA PRINCIPAL
+   ============================================= */
+
+.author-card {
+  max-width: 1250px;
+
+  margin: 0 auto;
+
+  padding: 32px;
+
+  display: grid;
+
+  grid-template-columns: 370px 1fr;
+
+  gap: 50px;
+
+  background: #fff;
+
+  border: 1px solid var(--line);
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 12px 28px rgba(23, 19, 15, 0.10);
+
+  opacity: 0;
+
+  transform: translateY(20px);
+
+  transition:
+    opacity .6s ease,
+    transform .6s ease;
+}
+
+
+/* JS AGREGA ESTA CLASE */
+
+.author-card.visible {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+
+/* =============================================
+   FOTO DE STEPHEN KING
+   ============================================= */
+
+.author-image {
+  width: 100%;
+
+  height: 100%;
+
+  min-height: 610px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  border-radius: 12px;
+
+  background: var(--paper-dim);
+}
+
+
+.author-image img {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+  object-position: center;
+
+  filter: grayscale(25%);
+
+  transition:
+    transform .4s ease,
+    filter .4s ease;
+}
+
+
+.author-image:hover img {
+  transform: scale(1.025);
+
+  filter: grayscale(0%);
+}
+
+
+/* =============================================
+   CONTENIDO
+   ============================================= */
+
+.author-content {
+  padding: 10px 5px 10px 0;
+}
+
+
+/* SOBRE EL AUTOR */
+
+.author-label {
+  display: inline-block;
+
+  margin-bottom: 8px;
+
+  color: var(--blood);
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: 3px;
+
+  text-transform: uppercase;
+}
+
+
+/* STEPHEN KING */
+
+.author-content h1 {
+  margin: 0 0 12px;
+
+  font-family: var(--serif);
+
+  font-size: 48px;
+
+  line-height: 1.05;
+
+  color: var(--ink);
+}
+
+
+/* TEXTO INTRODUCTORIO */
+
+.author-intro {
+  max-width: 650px;
+
+  margin: 0 0 28px;
+
+  font-family: var(--serif);
+
+  font-size: 18px;
+
+  font-style: italic;
+
+  line-height: 1.6;
+
+  color: var(--muted);
+}
+
+
+/* =============================================
+   BIOGRAFÍA
+   ============================================= */
+
+.author-text h2 {
+  margin: 25px 0 10px;
+
+  font-family: var(--serif);
+
+  font-size: 21px;
+
+  color: var(--ink);
+}
+
+
+.author-text p {
+  margin: 0 0 14px;
+
+  font-size: 14.5px;
+
+  line-height: 1.8;
+
+  color: var(--ink-soft);
+}
+
+
+.author-text strong {
+  color: var(--ink);
+
+  font-weight: 700;
+}
+
+
+/* =============================================
+   DATOS DESTACADOS
+   ============================================= */
+
+.author-details {
+  margin-top: 30px;
+
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 12px;
+}
+
+
+/* CUADRITOS */
+
+.detail-box {
+  min-height: 78px;
+
+  padding: 15px 17px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  background: var(--paper-dim);
+
+  border: 1px solid var(--line);
+
+  border-left: 3px solid var(--blood);
+
+  border-radius: 6px;
+
+  transition:
+    transform .15s ease,
+    box-shadow .15s ease;
+}
+
+
+.detail-box:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 7px 16px rgba(23, 19, 15, 0.08);
+}
+
+
+/* TÍTULO DE CADA DATO */
+
+.detail-box span {
+  margin-bottom: 5px;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 1.2px;
+
+  text-transform: uppercase;
+
+  color: var(--muted);
+}
+
+
+/* INFORMACIÓN */
+
+.detail-box strong {
+  font-size: 13.5px;
+
+  line-height: 1.4;
+
+  color: var(--ink);
+}
+
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+
+@media (max-width: 950px) {
+
+  .author-card {
+    grid-template-columns: 300px 1fr;
+
+    gap: 30px;
+  }
+
+  .author-image {
+    min-height: 580px;
+  }
+
+  .author-content h1 {
+    font-size: 42px;
+  }
+
+}
+
+
+@media (max-width: 750px) {
+
+  .header-inner {
+    padding: 10px 18px;
+
+    flex-wrap: wrap;
+  }
+
+
+  .main-nav {
+    gap: 18px;
+
+    flex-wrap: wrap;
+  }
+
+
+  .main-nav a {
+    font-size: 13px;
+  }
+
+
+  .author-page {
+    padding: 35px 18px 60px;
+  }
+
+
+  .author-card {
+    padding: 20px;
+
+    grid-template-columns: 1fr;
+
+    gap: 25px;
+  }
+
+
+  .author-image {
+    height: 480px;
+
+    min-height: 0;
+  }
+
+
+  .author-content {
+    padding: 0;
+  }
+
+
+  .author-details {
+    grid-template-columns: 1fr;
+  }
+
+}
+/* =============================================
+   EL UNIVERSO QUE CREÓ
+   ============================================= */
+
+.king-universe {
+  padding: 80px 40px;
+
+  background: var(--ink);
+
+  color: #f4ede0;
+}
+
+
+.universe-container {
+  max-width: 1250px;
+
+  margin: 0 auto;
+}
+
+
+/* TEXTO PEQUEÑO */
+
+.universe-label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: var(--blood);
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: 3px;
+}
+
+
+/* TÍTULO */
+
+.universe-container h2 {
+  margin: 0 0 15px;
+
+  font-family: var(--serif);
+
+  font-size: 42px;
+
+  color: #f4ede0;
+}
+
+
+/* DESCRIPCIÓN */
+
+.universe-intro {
+  max-width: 800px;
+
+  margin: 0 0 35px;
+
+  color: #cfc4b2;
+
+  font-size: 15px;
+
+  line-height: 1.8;
+}
+
+
+
+/* =============================================
+   MAPA + LUGARES
+   ============================================= */
+
+.universe-content {
+  width: 100%;
+
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 55px;
+
+  margin-top: 35px;
+}
+
+
+/* =============================================
+   MAPA - LADO IZQUIERDO
+   ============================================= */
+
+.universe-image {
+  width: 400px;
+
+  min-width: 400px;
+
+  flex-shrink: 0;
+
+  border: 1px solid #443a31;
+
+  border-radius: 12px;
+
+  overflow: hidden;
+}
+
+
+.universe-image img {
+  width: 100%;
+
+  height: auto;
+
+  display: block;
+}
+
+
+/* =============================================
+   INFORMACIÓN - LADO DERECHO
+   ============================================= */
+
+.universe-places {
+  flex: 1;
+
+  min-width: 0;
+}
+
+
+/* LUGARES E HISTORIAS */
+
+.places-label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: var(--blood);
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 3px;
+}
+
+
+/* TÍTULO */
+
+.universe-places > h3 {
+  margin: 0 0 20px;
+
+  font-family: var(--serif);
+
+  font-size: 27px;
+
+  color: #f4ede0;
+}
+
+
+/* =============================================
+   CADA LUGAR
+   ============================================= */
+
+.place-item {
+  padding: 11px 0;
+
+  border-bottom: 1px solid #3b342e;
+
+  transition: padding-left .2s ease;
+}
+
+
+.place-item:hover {
+  padding-left: 7px;
+}
+
+
+/* =============================================
+   NOMBRE DEL LUGAR
+   ============================================= */
+
+.place-name {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 7px;
+}
+
+
+.place-name > span {
+  color: var(--blood);
+
+  font-size: 10px;
+
+  font-weight: 700;
+}
+
+
+.place-name h4 {
+  margin: 0;
+
+  font-family: var(--serif);
+
+  font-size: 18px;
+
+  color: #f4ede0;
+}
+
+
+/* =============================================
+   LIBROS DE CADA LUGAR
+   ============================================= */
+
+.place-books {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 6px;
+
+  padding-left: 25px;
+}
+
+
+.place-books span {
+  padding: 5px 9px;
+
+  background: #211c18;
+
+  border: 1px solid #443a31;
+
+  border-radius: 4px;
+
+  color: #cfc4b2;
+
+  font-size: 10.5px;
+}
+
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+
+@media (max-width: 850px) {
+
+  .universe-content {
+    flex-direction: column;
+
+    gap: 35px;
+  }
+
+
+  .universe-image {
+    width: 400px;
+
+    min-width: 0;
+
+    max-width: 100%;
+  }
+
+
+  .universe-places {
+    width: 100%;
+  }
+
+}
+
+
+@media (max-width: 500px) {
+
+  .king-universe {
+    padding: 55px 18px;
+  }
+
+
+  .universe-container h2 {
+    font-size: 34px;
+  }
+
+
+  .universe-image {
+    width: 100%;
+  }
+
+
+  .place-books {
+    padding-left: 0;
+  }
+
+}
+
+
+/* =============================================
+   IMAGEN DEL UNIVERSO DE STEPHEN KING
+   ============================================= */
+
+.universe-image {
+  width: 100%;
+  max-width: 400px;
+
+  margin-top: 35px;
+
+  border: 1px solid #443a31;
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  background: var(--paper-dim);
+}
+
+
+.universe-image img {
+  width: 100%;
+  height: auto;
+
+  display: block;
+}
