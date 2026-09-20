@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Contacto | Derry Books</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="icon" type="image/png" href="imagenes/logo.png">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="Contacto.css">
+
+</head>
+
+
+<body>
+
+
+<!-- ============================================
+     HEADER
+     ============================================ -->
+
+<header class="site-header">
+
+  <div class="header-inner">
+
+    <!-- LOGO -->
+
+    <a class="brand" href="index.html">
+
+      <img
+        src="imagenes/logo.png"
+        alt="Derry Books"
+        class="brand-logo"
+      >
+
+    </a>
+
+
+    <!-- NAVEGACIÓN -->
+
+    <nav
+      class="main-nav"
+      aria-label="Navegación principal"
+    >
+
+      <a href="index.html">
+        Inicio
+      </a>
+
+      <a href="index.html#libros">
+        Libros
+      </a>
+
+      <a href="SobreKing.html">
+        Sobre Stephen King
+      </a>
+
+      <a href="Contacto.html" class="active">
+        Contacto
+      </a>
+
+    </nav>
+
+  </div>
+
+</header>
+
+
+
+<!-- ============================================
+     CONTACTO
+     ============================================ -->
+
+<main class="contact-page">
+
+  <!-- ENCABEZADO -->
+
+  <div class="contact-heading">
+
+    <span class="contact-label">
+      DERRY BOOKS
+    </span>
+
+    <h1>Contactanos</h1>
+
+    <p>
+      ¿Buscás algún libro de Stephen King, una edición especial
+      o querés realizar una consulta? Escribinos.
+    </p>
+
+  </div>
+
+
+  <!-- TARJETA -->
+
+  <div class="contact-card">
+
+
+    <!-- ========================================
+         INFORMACIÓN
+         ======================================== -->
+
+    <div class="contact-info">
+
+      <span class="info-label">
+        HABLEMOS
+      </span>
+
+      <h2>
+        Estamos para ayudarte
+      </h2>
+
+      <p class="info-description">
+        En Derry Books nos especializamos en libros de Stephen King.
+        Si estás buscando un título, una edición determinada o
+        necesitás información, podés enviarnos tu consulta.
+      </p>
+
+
+      <!-- EMAIL -->
+
+      <div class="info-item">
+
+        <span class="info-title">
+          EMAIL
+        </span>
+
+        <p>
+          contacto@derrybooks.com
+        </p>
+
+      </div>
+
+
+      <!-- TELÉFONO -->
+
+      <div class="info-item">
+
+        <span class="info-title">
+          TELÉFONO
+        </span>
+
+        <p>
+          +54 9 299 000 0000
+        </p>
+
+      </div>
+
+
+      <!-- HORARIOS -->
+
+      <div class="info-item">
+
+        <span class="info-title">
+          HORARIOS DE ATENCIÓN
+        </span>
+
+        <p>
+          Lunes a viernes<br>
+          9:00 a 18:00 hs
+        </p>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- ========================================
+         FORMULARIO
+         ======================================== -->
+
+    <div class="contact-form-container">
+
+      <h2>
+        Enviá tu consulta
+      </h2>
+
+      <form id="contactForm">
+
+
+        <!-- NOMBRE -->
+
+        <div class="form-group">
+
+          <label for="nombre">
+            Nombre
+          </label>
+
+          <input
+            type="text"
+            id="nombre"
+            placeholder="Tu nombre"
+            required
+          >
+
+        </div>
+
+
+        <!-- EMAIL -->
+
+        <div class="form-group">
+
+          <label for="email">
+            Correo electrónico
+          </label>
+
+          <input
+            type="email"
+            id="email"
+            placeholder="nombre@email.com"
+            required
+          >
+
+        </div>
+
+
+        <!-- ASUNTO -->
+
+        <div class="form-group">
+
+          <label for="asunto">
+            Asunto
+          </label>
+
+          <select id="asunto" required>
+
+            <option value="">
+              Seleccioná una opción
+            </option>
+
+            <option value="libro">
+              Consulta por un libro
+            </option>
+
+            <option value="edicion">
+              Edición especial
+            </option>
+
+            <option value="pedido">
+              Consulta sobre un pedido
+            </option>
+
+            <option value="otro">
+              Otra consulta
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- MENSAJE -->
+
+        <div class="form-group">
+
+          <label for="mensaje">
+            Mensaje
+          </label>
+
+          <textarea
+            id="mensaje"
+            rows="6"
+            placeholder="Escribí tu consulta..."
+            required
+          ></textarea>
+
+        </div>
+
+
+        <!-- BOTÓN -->
+
+        <button
+          type="submit"
+          class="contact-button"
+        >
+          Enviar mensaje
+        </button>
+
+
+        <!-- MENSAJE DEL JS -->
+
+        <p
+          id="formMessage"
+          class="form-message"
+        ></p>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</main>
+
+
+<script src="Contacto.js"></script>
+
+</body>
+
+</html>
