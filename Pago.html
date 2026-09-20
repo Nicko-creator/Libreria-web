@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Finalizar compra | Derry Books</title>
+
+  <!-- FAVICON -->
+  <link
+    rel="icon"
+    type="image/png"
+    href="imagenes/logo.png"
+  >
+
+  <!-- FUENTES -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="Pago.css">
+
+</head>
+
+
+<body>
+
+
+  <!-- ============================================
+       HEADER
+  ============================================= -->
+
+  <header class="site-header">
+
+    <div class="header-inner">
+
+      <!-- LOGO -->
+
+      <a href="index.html" class="brand">
+
+        <img
+          src="imagenes/logo.png"
+          alt="Logo Derry Books"
+          class="brand-logo"
+        >
+
+      </a>
+
+
+      <!-- NAVEGACIÓN -->
+
+      <nav class="main-nav">
+
+        <a href="index.html">
+          Inicio
+        </a>
+
+        <a href="index.html#libros">
+          Libros
+        </a>
+
+        <a href="SobreKing.html">
+          Sobre Stephen King
+        </a>
+
+        <a href="Contacto.html">
+          Contacto
+        </a>
+
+      </nav>
+
+
+      <!-- VOLVER -->
+
+      <div class="header-actions">
+
+        <a
+          href="index.html"
+          class="back-link"
+        >
+          ← Volver a la tienda
+        </a>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- ============================================
+       PAGO
+  ============================================= -->
+
+  <main class="payment-page">
+
+
+    <!-- ENCABEZADO -->
+
+    <section class="payment-heading">
+
+      <span class="eyebrow">
+        DERRY BOOKS
+      </span>
+
+      <h1>
+        Finalizar compra
+      </h1>
+
+      <p>
+        Revisá tu pedido y escaneá el código QR
+        para continuar con el pago.
+      </p>
+
+    </section>
+
+
+
+    <!-- ============================================
+         CONTENIDO
+    ============================================= -->
+
+    <section class="payment-container">
+
+
+      <!-- ============================================
+           RESUMEN DEL PEDIDO
+      ============================================= -->
+
+      <div class="order-card">
+
+        <div class="card-heading">
+
+          <span>
+            TU COMPRA
+          </span>
+
+          <h2>
+            Resumen del pedido
+          </h2>
+
+        </div>
+
+
+        <!-- PRODUCTOS -->
+
+        <div
+          class="order-products"
+          id="order-products"
+        >
+
+          <!-- JavaScript agrega los productos acá -->
+
+        </div>
+
+
+        <!-- TOTAL -->
+
+        <div class="order-total">
+
+          <span>
+            Total
+          </span>
+
+          <strong id="order-total">
+            $ 0
+          </strong>
+
+        </div>
+
+
+        <!-- VOLVER -->
+
+        <a
+          href="index.html#libros"
+          class="continue-shopping"
+        >
+          ← Seguir comprando
+        </a>
+
+      </div>
+
+
+
+      <!-- ============================================
+           MERCADO PAGO
+      ============================================= -->
+
+      <div class="payment-card">
+
+
+        <div class="mercado-header">
+
+          <div class="mp-icon">
+            MP
+          </div>
+
+          <div>
+
+            <span>
+              MÉTODO DE PAGO
+            </span>
+
+            <h2>
+              Mercado Pago
+            </h2>
+
+          </div>
+
+        </div>
+
+
+        <div class="payment-divider"></div>
+
+
+        <p class="qr-description">
+          Escaneá el código QR desde Mercado Pago
+          para realizar el pago.
+        </p>
+
+
+
+        <!-- ============================================
+             QR
+        ============================================= -->
+
+        <div class="qr-container">
+
+          <div
+            class="qr-box"
+            id="qr-code"
+          ></div>
+
+        </div>
+
+
+
+        <!-- TOTAL A PAGAR -->
+
+        <div class="amount-box">
+
+          <span>
+            TOTAL A PAGAR
+          </span>
+
+          <strong id="payment-total">
+            $ 0
+          </strong>
+
+        </div>
+
+
+
+        <!-- ESTADO -->
+
+        <div
+          class="payment-status"
+          id="payment-status"
+        >
+
+          <span class="status-dot"></span>
+
+          Esperando el pago...
+
+        </div>
+
+
+
+        <!-- AVISO -->
+
+        <p class="payment-help">
+          Abrí Mercado Pago desde tu celular,
+          seleccioná la opción para escanear QR
+          y apuntá la cámara al código.
+        </p>
+
+
+        <!-- BOTÓN DEMOSTRACIÓN -->
+
+        <button
+          type="button"
+          id="simulate-payment"
+          class="simulate-btn"
+        >
+          Simular pago aprobado
+        </button>
+
+
+        <small class="demo-warning">
+          Función de demostración para el proyecto.
+        </small>
+
+      </div>
+
+
+    </section>
+
+
+  </main>
+
+
+
+  <!-- ============================================
+       MODAL PAGO APROBADO
+  ============================================= -->
+
+  <div
+    class="payment-overlay"
+    id="payment-overlay"
+  >
+
+    <div class="success-modal">
+
+      <div class="success-icon">
+        ✓
+      </div>
+
+      <span class="success-label">
+        PAGO APROBADO
+      </span>
+
+      <h2>
+        ¡Gracias por tu compra!
+      </h2>
+
+      <p>
+        Tu pago fue procesado correctamente.
+      </p>
+
+      <div class="purchase-number">
+
+        <span>
+          Número de pedido
+        </span>
+
+        <strong id="purchase-number">
+          DB-000000
+        </strong>
+
+      </div>
+
+      <a
+        href="index.html"
+        class="return-home"
+        id="return-home"
+      >
+        Volver a Derry Books
+      </a>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- ============================================
+       FOOTER
+  ============================================= -->
+
+  <footer class="site-footer">
+
+    <p>
+      © 2026 Derry Books · Librería especializada en Stephen King
+    </p>
+
+  </footer>
+
+
+
+  <!-- ============================================
+       LIBRERÍA PARA GENERAR QR
+       Solo se usa para la demostración visual
+  ============================================= -->
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
+  </script>
+
+
+  <!-- JAVASCRIPT -->
+
+  <script src="Pago.js"></script>
+
+
+</body>
+
+</html>
