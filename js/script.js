@@ -1546,8 +1546,10 @@ navLinks.forEach(link => {
 // INICIAR PÁGINA
 // ============================================
 
-renderBooks();
 
+
+
+renderBooks();
 updateCartUI();
 
 
@@ -1555,17 +1557,13 @@ updateCartUI();
 // FINALIZAR COMPRA
 // ============================================
 
-const checkoutBtn =
-  document.getElementById('checkout-btn');
+const checkoutBtn = document.getElementById('checkout-btn');
 
 checkoutBtn.addEventListener('click', () => {
 
   if (cart.length === 0) {
-
     alert('Tu carrito está vacío.');
-
     return;
-
   }
 
   localStorage.setItem(
@@ -1573,6 +1571,6 @@ checkoutBtn.addEventListener('click', () => {
     JSON.stringify(cart)
   );
 
-  window.location.href = 'Pago.html';
+  window.location.href = 'paginas/Pago.html';
 
 });
