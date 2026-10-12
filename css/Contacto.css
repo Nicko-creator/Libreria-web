@@ -494,3 +494,36 @@ textarea.form-control {
   }
 
 }
+
+
+/* =============================================
+   FOOTER (componente React <Footer />)
+   ============================================= */
+
+.site-footer {
+  padding: 25px 20px;
+
+  background: var(--ink);
+
+  color: #8d8375;
+
+  text-align: center;
+
+  font-size: 11px;
+}
+
+
+.site-footer p {
+  margin: 0;
+}
+
+
+/* Contenedor de los botones de la derecha del header */
+
+.header-actions {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+}
