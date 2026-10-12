@@ -58,7 +58,8 @@ img {
 
 
 /* =============================================
-   HEADER
+   HEADER (navbar de Bootstrap)
+   El sticky lo hace la clase sticky-top
    ============================================= */
 
 .site-header {
@@ -66,41 +67,23 @@ img {
 
   color: #efe6d8;
 
-  position: sticky;
-
-  top: 0;
-
   z-index: 40;
 
   border-bottom: 1px solid #000;
 }
 
 
-.header-inner {
-  max-width: 1440px;
+.site-header .navbar {
+  padding: 6px 0;
+}
 
-  margin: 0 auto;
 
-  padding: 8px 40px;
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 35px;
+.site-header .container-xxl {
+  padding: 0 40px;
 }
 
 
 /* LOGO */
-
-.brand {
-  display: flex;
-
-  align-items: center;
-
-  flex-shrink: 0;
-}
-
 
 .brand-logo {
   width: 60px;
@@ -111,25 +94,12 @@ img {
 }
 
 
-/* =============================================
-   NAVEGACIÓN
-   ============================================= */
+/* LINKS DEL MENÚ */
 
-.main-nav {
-  display: flex;
-
-  gap: 30px;
-
-  flex: 1;
-}
-
-
-.main-nav a {
+.main-nav .nav-link {
   font-size: 14.5px;
 
   color: #cfc4b2;
-
-  padding-bottom: 4px;
 
   border-bottom: 2px solid transparent;
 
@@ -141,28 +111,70 @@ img {
 }
 
 
-.main-nav a:hover {
+.main-nav .nav-link:hover {
   color: #f4ede0;
 }
 
 
-.main-nav a.active {
+.main-nav .nav-link.active {
   color: #f4ede0;
 
   border-bottom-color: var(--blood);
 }
 
 
+/* BOTÓN HAMBURGUESA */
+
+.navbar-toggler {
+  border-color: #443a31;
+}
+
+
+/* COMPU: separación entre links */
+
+@media (min-width: 992px) {
+
+  .main-nav {
+    gap: 18px;
+  }
+
+}
+
+
+/* CELULAR Y TABLET: menú desplegado */
+
+@media (max-width: 991.98px) {
+
+  .site-header .container-xxl {
+    padding: 0 18px;
+  }
+
+
+  .navbar-collapse {
+    padding: 12px 0;
+  }
+
+
+  .main-nav .nav-link.active {
+    border-bottom-color: transparent;
+
+    border-left: 3px solid var(--blood);
+
+    padding-left: 10px;
+  }
+
+}
+
+
 /* =============================================
    PÁGINA CONTACTO
+   (el ancho lo da container-xl de Bootstrap)
    ============================================= */
 
 .contact-page {
-  max-width: 1250px;
+  padding-top: 65px;
 
-  margin: 0 auto;
-
-  padding: 65px 40px 90px;
+  padding-bottom: 90px;
 }
 
 
@@ -216,13 +228,10 @@ img {
 
 /* =============================================
    TARJETA
+   (las columnas las hace row / col-lg-4 / col-lg-8)
    ============================================= */
 
 .contact-card {
-  display: grid;
-
-  grid-template-columns: 380px 1fr;
-
   overflow: hidden;
 
   background: #fff;
@@ -315,6 +324,8 @@ img {
 
 /* =============================================
    FORMULARIO
+   (clases de Bootstrap: form-label, form-control,
+    form-select, is-invalid, invalid-feedback)
    ============================================= */
 
 .contact-form-container {
@@ -333,14 +344,9 @@ img {
 }
 
 
-.form-group {
-  margin-bottom: 20px;
-}
+/* Etiquetas */
 
-
-.form-group label {
-  display: block;
-
+.form-label {
   margin-bottom: 7px;
 
   color: var(--ink-soft);
@@ -351,43 +357,35 @@ img {
 }
 
 
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width: 100%;
+/* Campos con los colores de Derry Books */
 
+.form-control,
+.form-select {
   padding: 12px 14px;
-
-  font-family: var(--sans);
 
   font-size: 14px;
 
   color: var(--ink);
 
-  background: var(--paper);
+  background-color: var(--paper);
 
   border: 1px solid var(--line);
 
   border-radius: 5px;
-
-  outline: none;
-
-  transition:
-    border-color .15s ease,
-    box-shadow .15s ease;
 }
 
 
-.form-group textarea {
+textarea.form-control {
   resize: vertical;
 
   min-height: 130px;
 }
 
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
+.form-control:focus,
+.form-select:focus {
+  background-color: var(--paper);
+
   border-color: var(--blood);
 
   box-shadow:
@@ -395,13 +393,26 @@ img {
 }
 
 
+/* Campo con error (is-invalid lo agrega el JS) */
+
+.form-control.is-invalid,
+.form-select.is-invalid {
+  border-color: var(--blood);
+}
+
+
+.invalid-feedback {
+  color: var(--blood);
+
+  font-size: 12px;
+}
+
+
 /* =============================================
-   BOTÓN
+   BOTÓN (btn btn-dark de Bootstrap con nuestros colores)
    ============================================= */
 
 .contact-button {
-  width: 100%;
-
   padding: 13px 20px;
 
   background: var(--ink);
@@ -412,13 +423,9 @@ img {
 
   border-radius: 5px;
 
-  font-family: var(--sans);
-
   font-size: 14px;
 
   font-weight: 600;
-
-  cursor: pointer;
 
   transition:
     background .15s ease,
@@ -426,36 +433,40 @@ img {
 }
 
 
-.contact-button:hover {
+.contact-button:hover,
+.contact-button:focus {
   background: var(--blood);
+
+  color: #fff;
 
   transform: translateY(-1px);
 }
 
 
 /* =============================================
-   MENSAJE
+   MENSAJE (alert de Bootstrap)
    ============================================= */
 
-.form-message {
-  display: none;
-
-  margin: 15px 0 0;
-
-  padding: 12px;
-
-  background: #edf4ee;
-
-  border-left: 3px solid var(--green);
-
-  color: var(--green);
-
+.alert {
   font-size: 13px;
 }
 
 
-.form-message.visible {
-  display: block;
+.alert-success {
+  background: #edf4ee;
+
+  border-color: rgba(63, 125, 79, .3);
+
+  color: var(--green);
+}
+
+
+.alert-danger {
+  background: rgba(156, 43, 43, .08);
+
+  border-color: rgba(156, 43, 43, .25);
+
+  color: var(--blood);
 }
 
 
@@ -463,38 +474,12 @@ img {
    RESPONSIVE
    ============================================= */
 
-@media (max-width: 800px) {
-
-  .contact-card {
-    grid-template-columns: 1fr;
-  }
-
-}
-
-
 @media (max-width: 750px) {
 
-  .header-inner {
-    padding: 10px 18px;
-
-    flex-wrap: wrap;
-  }
-
-
-  .main-nav {
-    gap: 18px;
-
-    flex-wrap: wrap;
-  }
-
-
-  .main-nav a {
-    font-size: 13px;
-  }
-
-
   .contact-page {
-    padding: 40px 18px 60px;
+    padding-top: 40px;
+
+    padding-bottom: 60px;
   }
 
 

@@ -20,14 +20,19 @@ const paymentStatus =
 const simulatePayment =
   document.getElementById('simulate-payment');
 
-const paymentOverlay =
-  document.getElementById('payment-overlay');
-
 const purchaseNumber =
   document.getElementById('purchase-number');
 
 const returnHome =
   document.getElementById('return-home');
+
+
+// MODAL DE BOOTSTRAP
+
+const paymentModal =
+  new bootstrap.Modal(
+    document.getElementById('payment-modal')
+  );
 
 
 // ============================================
@@ -97,6 +102,7 @@ function calcularTotal() {
 
 // ============================================
 // MOSTRAR PRODUCTOS
+// (cada producto es un list-group-item de Bootstrap)
 // ============================================
 
 function mostrarPedido() {
@@ -104,17 +110,19 @@ function mostrarPedido() {
   if (cart.length === 0) {
 
     orderProducts.innerHTML = `
-      <div class="empty-cart">
+
+      <li class="list-group-item empty-cart">
 
         No hay productos en el carrito.
 
         <br><br>
 
-        <a href="index.html#libros">
+        <a href="../index.html#libros">
           Volver a los libros
         </a>
 
-      </div>
+      </li>
+
     `;
 
 
@@ -134,7 +142,7 @@ function mostrarPedido() {
 
       return `
 
-        <div class="order-item">
+        <li class="list-group-item order-item">
 
           <div class="order-item-info">
 
@@ -157,7 +165,7 @@ function mostrarPedido() {
 
           </span>
 
-        </div>
+        </li>
 
       `;
 
@@ -303,9 +311,9 @@ simulatePayment.addEventListener(
       generarNumeroPedido();
 
 
-    paymentOverlay.classList.add(
-      'open'
-    );
+    // ABRIR EL MODAL DE BOOTSTRAP
+
+    paymentModal.show();
 
   }
 );

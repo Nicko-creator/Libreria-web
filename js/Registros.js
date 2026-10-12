@@ -1,18 +1,17 @@
 // ============================================
-// PESTAÑAS
+// PESTAÑAS (tabs de Bootstrap)
 // ============================================
+//
+// Las pestañas las cambia Bootstrap solo,
+// gracias a data-bs-toggle="tab" en el HTML.
+// Acá solo cambiamos el texto de la izquierda
+// y conectamos los botones "Registrate" / "Iniciar sesión".
 
 const loginTab =
   document.getElementById('login-tab');
 
 const registerTab =
   document.getElementById('register-tab');
-
-const loginSection =
-  document.getElementById('login-section');
-
-const registerSection =
-  document.getElementById('register-section');
 
 const goRegister =
   document.getElementById('go-register');
@@ -28,80 +27,65 @@ const mainDescription =
 
 
 // ============================================
-// MOSTRAR LOGIN
-// ============================================
-
-function mostrarLogin() {
-
-  loginSection.classList.add('active-form');
-
-  registerSection.classList.remove('active-form');
-
-
-  loginTab.classList.add('active');
-
-  registerTab.classList.remove('active');
-
-
-  mainTitle.textContent =
-    'Bienvenido de nuevo';
-
-  mainDescription.textContent =
-    'Iniciá sesión para acceder a tus favoritos, pedidos y continuar explorando Derry Books.';
-
-}
-
-
-// ============================================
-// MOSTRAR REGISTRO
-// ============================================
-
-function mostrarRegistro() {
-
-  registerSection.classList.add('active-form');
-
-  loginSection.classList.remove('active-form');
-
-
-  registerTab.classList.add('active');
-
-  loginTab.classList.remove('active');
-
-
-  mainTitle.textContent =
-    'Creá tu cuenta';
-
-  mainDescription.textContent =
-    'Registrate para disfrutar una mejor experiencia dentro de Derry Books.';
-
-}
-
-
-// ============================================
-// EVENTOS DE LAS PESTAÑAS
+// CAMBIAR EL TEXTO DE LA IZQUIERDA
+// (shown.bs.tab es un evento de Bootstrap que
+//  se dispara cuando se muestra una pestaña)
 // ============================================
 
 loginTab.addEventListener(
-  'click',
-  mostrarLogin
+  'shown.bs.tab',
+  () => {
+
+    mainTitle.textContent =
+      'Bienvenido de nuevo';
+
+    mainDescription.textContent =
+      'Iniciá sesión para acceder a tus favoritos, pedidos y continuar explorando Derry Books.';
+
+  }
 );
 
 
 registerTab.addEventListener(
-  'click',
-  mostrarRegistro
+  'shown.bs.tab',
+  () => {
+
+    mainTitle.textContent =
+      'Creá tu cuenta';
+
+    mainDescription.textContent =
+      'Registrate para disfrutar una mejor experiencia dentro de Derry Books.';
+
+  }
 );
 
 
+// ============================================
+// BOTONES "REGISTRATE" E "INICIAR SESIÓN"
+// (le pedimos a Bootstrap que muestre la pestaña)
+// ============================================
+
 goRegister.addEventListener(
   'click',
-  mostrarRegistro
+  () => {
+
+    bootstrap.Tab
+      .getOrCreateInstance(registerTab)
+      .show();
+
+  }
 );
 
 
 goLogin.addEventListener(
   'click',
-  mostrarLogin
+  () => {
+
+    bootstrap.Tab
+      .getOrCreateInstance(loginTab)
+      .show();
+
+  }
 );
 
 
@@ -121,17 +105,19 @@ function validarEmail(correo) {
 
 // ============================================
 // MOSTRAR ERROR
+// Bootstrap pinta el campo en rojo con "is-invalid"
+// y muestra el <div class="invalid-feedback">
 // ============================================
 
 function mostrarError(input, mensaje) {
 
-  input.classList.add('input-error');
+  input.classList.add('is-invalid');
 
-  const formGroup =
-    input.closest('.form-group');
+  const campo =
+    input.closest('.form-field');
 
   const error =
-    formGroup.querySelector('.error-message');
+    campo.querySelector('.invalid-feedback');
 
   error.textContent = mensaje;
 
@@ -144,15 +130,40 @@ function mostrarError(input, mensaje) {
 
 function quitarError(input) {
 
-  input.classList.remove('input-error');
+  input.classList.remove('is-invalid');
 
-  const formGroup =
-    input.closest('.form-group');
+  const campo =
+    input.closest('.form-field');
 
   const error =
-    formGroup.querySelector('.error-message');
+    campo.querySelector('.invalid-feedback');
 
   error.textContent = '';
+
+}
+
+
+// ============================================
+// MOSTRAR / OCULTAR MENSAJE (alerta de Bootstrap)
+// tipo: 'success' (verde) o 'danger' (rojo)
+// ============================================
+
+function mostrarMensaje(elemento, texto, tipo) {
+
+  elemento.textContent = texto;
+
+  elemento.className =
+    `alert alert-${tipo} mt-3 mb-0 text-center`;
+
+}
+
+
+function ocultarMensaje(elemento) {
+
+  elemento.textContent = '';
+
+  elemento.className =
+    'alert d-none mt-3 mb-0 text-center';
 
 }
 
@@ -289,35 +300,46 @@ loginForm.addEventListener(
     }
 
 
-    // LOGIN CORRECTO EN FRONTEND
+    // HAY ERRORES
 
-    if (formularioValido) {
+    if (!formularioValido) {
 
-      loginMessage.textContent =
-        '✓ Datos completados correctamente.';
+      mostrarMensaje(
+        loginMessage,
+        'Revisá los campos marcados en rojo.',
+        'danger'
+      );
 
-      loginMessage.className =
-        'register-message success';
-
-
-      console.log({
-
-        email: loginEmail.value.trim()
-
-      });
-
-
-      /*
-        IMPORTANTE:
-
-        Por ahora solamente validamos el formulario.
-
-        Más adelante Diego conectará este formulario
-        con Laravel y MySQL para comprobar realmente
-        si el usuario y la contraseña existen.
-      */
+      return;
 
     }
+
+
+    // LOGIN CORRECTO EN FRONTEND
+
+    mostrarMensaje(
+      loginMessage,
+      '✓ Datos completados correctamente.',
+      'success'
+    );
+
+
+    console.log({
+
+      email: loginEmail.value.trim()
+
+    });
+
+
+    /*
+      IMPORTANTE:
+
+      Por ahora solamente validamos el formulario.
+
+      Más adelante Diego conectará este formulario
+      con Laravel y MySQL para comprobar realmente
+      si el usuario y la contraseña existen.
+    */
 
   }
 );
@@ -347,9 +369,6 @@ const confirmPassword =
 
 const terminos =
   document.getElementById('terminos');
-
-const termsError =
-  document.getElementById('terms-error');
 
 const registerMessage =
   document.getElementById('register-message');
@@ -545,8 +564,7 @@ registerForm.addEventListener(
 
     if (!terminos.checked) {
 
-      termsError.textContent =
-        'Debés aceptar los términos y condiciones.';
+      terminos.classList.add('is-invalid');
 
       formularioValido = false;
 
@@ -554,7 +572,24 @@ registerForm.addEventListener(
 
     else {
 
-      termsError.textContent = '';
+      terminos.classList.remove('is-invalid');
+
+    }
+
+
+    // ========================================
+    // HAY ERRORES
+    // ========================================
+
+    if (!formularioValido) {
+
+      mostrarMensaje(
+        registerMessage,
+        'Revisá los campos marcados en rojo.',
+        'danger'
+      );
+
+      return;
 
     }
 
@@ -563,54 +598,50 @@ registerForm.addEventListener(
     // REGISTRO CORRECTO
     // ========================================
 
-    if (formularioValido) {
-
-      registerMessage.textContent =
-        '✓ Cuenta creada correctamente.';
-
-      registerMessage.className =
-        'register-message success';
+    mostrarMensaje(
+      registerMessage,
+      '✓ Cuenta creada correctamente.',
+      'success'
+    );
 
 
-      console.log({
+    console.log({
 
-        nombre: nombre.value.trim(),
+      nombre: nombre.value.trim(),
 
-        apellido: apellido.value.trim(),
+      apellido: apellido.value.trim(),
 
-        email: email.value.trim()
+      email: email.value.trim()
 
-      });
-
-
-      /*
-        POR AHORA NO GUARDAMOS LA CONTRASEÑA.
-
-        Cuando Diego tenga Laravel + MySQL,
-        estos datos se enviarán al backend.
-      */
+    });
 
 
-      // LIMPIAR FORMULARIO
+    /*
+      POR AHORA NO GUARDAMOS LA CONTRASEÑA.
 
-      registerForm.reset();
+      Cuando Diego tenga Laravel + MySQL,
+      estos datos se enviarán al backend.
+    */
 
 
-      // OCULTAR CONTRASEÑAS
+    // LIMPIAR FORMULARIO
 
-      password.type =
-        'password';
+    registerForm.reset();
 
-      confirmPassword.type =
-        'password';
 
-      showPassword.textContent =
-        'Ver';
+    // OCULTAR CONTRASEÑAS
 
-      showConfirmPassword.textContent =
-        'Ver';
+    password.type =
+      'password';
 
-    }
+    confirmPassword.type =
+      'password';
+
+    showPassword.textContent =
+      'Ver';
+
+    showConfirmPassword.textContent =
+      'Ver';
 
   }
 );
@@ -632,10 +663,7 @@ registerForm.addEventListener(
 
       quitarError(input);
 
-      loginMessage.className =
-        'register-message';
-
-      loginMessage.textContent = '';
+      ocultarMensaje(loginMessage);
 
     }
   );
@@ -662,10 +690,7 @@ registerForm.addEventListener(
 
       quitarError(input);
 
-      registerMessage.className =
-        'register-message';
-
-      registerMessage.textContent = '';
+      ocultarMensaje(registerMessage);
 
     }
   );
@@ -683,7 +708,7 @@ terminos.addEventListener(
 
     if (terminos.checked) {
 
-      termsError.textContent = '';
+      terminos.classList.remove('is-invalid');
 
     }
 

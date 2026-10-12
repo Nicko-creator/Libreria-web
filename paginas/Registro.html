@@ -16,7 +16,7 @@
   <link
     rel="icon"
     type="image/png"
-    href="imagenes/logo.png"
+    href="../imagenes/logo.png"
   >
 
   <!-- FUENTES -->
@@ -27,7 +27,17 @@
     rel="stylesheet"
   >
 
-  <!-- CSS -->
+
+  <!-- BOOTSTRAP -->
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+  >
+
+
+  <!-- CSS PROPIO (siempre después de Bootstrap) -->
+
   <link rel="stylesheet" href="../css/Registros.css">
 
 </head>
@@ -37,64 +47,75 @@
 
 
   <!-- =========================================
-       HEADER
+       HEADER (navbar de Bootstrap)
   ========================================== -->
 
-  <header class="site-header">
+  <header class="site-header sticky-top">
 
-    <div class="header-inner">
+    <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Navegación principal">
 
-
-      <!-- LOGO -->
-
-      <a href="../index.html" class="brand">
-
-        <img
-          src="../imagenes/logo.png"
-          alt="Logo Derry Books"
-          class="brand-logo"
-        >
-
-      </a>
+      <div class="container-xxl">
 
 
-      <!-- NAVEGACIÓN -->
+        <!-- LOGO -->
 
-      <nav class="main-nav">
-
-        <a href="../index.html">
-          Inicio
+        <a class="navbar-brand py-0" href="../index.html">
+          <img src="../imagenes/logo.png" alt="Logo Derry Books" class="brand-logo">
         </a>
 
-        <a href="../index.html#libros">
-          Libros
-        </a>
 
-        <a href="../paginas/SobreKing.html">
-          Sobre Stephen King
-        </a>
+        <!-- SIEMPRE VISIBLES: volver + hamburguesa -->
 
-        <a href="../paginas/Contacto.html">
-          Contacto
-        </a>
+        <div class="header-actions order-lg-last ms-auto ms-lg-3">
 
-      </nav>
+          <a href="../index.html" class="back-link">
+            ← Volver a la tienda
+          </a>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#menu-principal"
+            aria-controls="menu-principal"
+            aria-expanded="false"
+            aria-label="Abrir menú"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+        </div>
 
 
-      <!-- VOLVER -->
+        <!-- MENÚ DESPLEGABLE -->
 
-      <div class="header-actions">
+        <div class="collapse navbar-collapse" id="menu-principal">
 
-        <a
-          href="../index.html"
-          class="back-link"
-        >
-          ← Volver a la tienda
-        </a>
+          <ul class="navbar-nav me-auto main-nav">
+
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">Inicio</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html#libros">Libros</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="SobreKing.html">Sobre Stephen King</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="Contacto.html">Contacto</a>
+            </li>
+
+          </ul>
+
+        </div>
 
       </div>
 
-    </div>
+    </nav>
 
   </header>
 
@@ -106,548 +127,613 @@
 
   <main class="register-page">
 
-    <section class="register-container">
+    <div class="container-xl">
 
 
       <!-- =====================================
-           INFORMACIÓN IZQUIERDA
+           GRILLA DE BOOTSTRAP
+           compu: texto a la izquierda + tarjeta a la derecha
+           celular: el texto arriba y la tarjeta abajo
       ====================================== -->
 
-      <div class="register-info">
-
-        <span class="eyebrow">
-          DERRY BOOKS
-        </span>
-
-        <h1 id="main-title">
-          Bienvenido
-        </h1>
-
-        <p
-          class="register-description"
-          id="main-description"
-        >
-          Iniciá sesión o creá una cuenta para disfrutar
-          una mejor experiencia dentro de Derry Books.
-        </p>
-
-
-        <div class="benefits">
-
-
-          <div class="benefit">
-
-            <span class="benefit-icon">
-              ♡
-            </span>
-
-            <div>
-
-              <h3>
-                Guardá tus favoritos
-              </h3>
-
-              <p>
-                Conservá los libros que más te interesan.
-              </p>
-
-            </div>
-
-          </div>
-
-
-          <div class="benefit">
-
-            <span class="benefit-icon">
-              ◇
-            </span>
-
-            <div>
-
-              <h3>
-                Tus pedidos
-              </h3>
-
-              <p>
-                Accedé fácilmente a tus compras y pedidos.
-              </p>
-
-            </div>
-
-          </div>
-
-
-          <div class="benefit">
-
-            <span class="benefit-icon">
-              ✦
-            </span>
-
-            <div>
-
-              <h3>
-                Ediciones especiales
-              </h3>
-
-              <p>
-                Descubrí colecciones y ediciones especiales
-                de Stephen King.
-              </p>
-
-            </div>
-
-          </div>
-
-
-        </div>
-
-      </div>
-
-
-
-      <!-- =====================================
-           TARJETA
-      ====================================== -->
-
-      <div class="register-card">
+      <div class="row g-5 align-items-center justify-content-center">
 
 
         <!-- =====================================
-             PESTAÑAS
+             INFORMACIÓN IZQUIERDA
         ====================================== -->
 
-        <div class="account-tabs">
+        <div class="col-lg-6">
 
-          <button
-            type="button"
-            class="tab-btn active"
-            id="login-tab"
-          >
-            Iniciar sesión
-          </button>
+          <div class="register-info">
 
-          <button
-            type="button"
-            class="tab-btn"
-            id="register-tab"
-          >
-            Registrarse
-          </button>
-
-        </div>
-
-
-
-        <!-- =====================================
-             FORMULARIO INICIAR SESIÓN
-        ====================================== -->
-
-        <div
-          class="account-form active-form"
-          id="login-section"
-        >
-
-          <div class="form-header">
-
-            <span class="form-label">
-              MI CUENTA
+            <span class="eyebrow">
+              DERRY BOOKS
             </span>
 
-            <h2>
-              Iniciar sesión
-            </h2>
+            <h1 id="main-title">
+              Bienvenido
+            </h1>
 
-            <p>
-              Ingresá tu correo electrónico y contraseña.
+            <p
+              class="register-description"
+              id="main-description"
+            >
+              Iniciá sesión o creá una cuenta para disfrutar
+              una mejor experiencia dentro de Derry Books.
             </p>
 
-          </div>
+
+            <div class="benefits">
 
 
-          <form
-            id="login-form"
-            novalidate
-          >
+              <div class="benefit">
 
-
-            <!-- EMAIL -->
-
-            <div class="form-group">
-
-              <label for="login-email">
-                Correo electrónico
-              </label>
-
-              <input
-                type="email"
-                id="login-email"
-                name="login-email"
-                placeholder="ejemplo@correo.com"
-                autocomplete="email"
-              >
-
-              <small class="error-message"></small>
-
-            </div>
-
-
-
-            <!-- CONTRASEÑA -->
-
-            <div class="form-group">
-
-              <label for="login-password">
-                Contraseña
-              </label>
-
-              <div class="password-container">
-
-                <input
-                  type="password"
-                  id="login-password"
-                  name="login-password"
-                  placeholder="Tu contraseña"
-                  autocomplete="current-password"
-                >
-
-                <button
-                  type="button"
-                  class="show-password"
-                  id="show-login-password"
-                >
-                  Ver
-                </button>
-
-              </div>
-
-              <small class="error-message"></small>
-
-            </div>
-
-
-
-            <!-- RECORDAR -->
-
-            <div class="login-options">
-
-              <label class="remember">
-
-                <input
-                  type="checkbox"
-                  id="recordarme"
-                >
-
-                <span>
-                  Recordarme
+                <span class="benefit-icon">
+                  ♡
                 </span>
 
-              </label>
+                <div>
+
+                  <h3>
+                    Guardá tus favoritos
+                  </h3>
+
+                  <p>
+                    Conservá los libros que más te interesan.
+                  </p>
+
+                </div>
+
+              </div>
 
 
-              <a
-                href="#"
-                id="forgot-password"
-              >
-                ¿Olvidaste tu contraseña?
-              </a>
+              <div class="benefit">
+
+                <span class="benefit-icon">
+                  ◇
+                </span>
+
+                <div>
+
+                  <h3>
+                    Tus pedidos
+                  </h3>
+
+                  <p>
+                    Accedé fácilmente a tus compras y pedidos.
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              <div class="benefit">
+
+                <span class="benefit-icon">
+                  ✦
+                </span>
+
+                <div>
+
+                  <h3>
+                    Ediciones especiales
+                  </h3>
+
+                  <p>
+                    Descubrí colecciones y ediciones especiales
+                    de Stephen King.
+                  </p>
+
+                </div>
+
+              </div>
+
 
             </div>
 
-
-
-            <!-- BOTÓN -->
-
-            <button
-              type="submit"
-              class="register-btn"
-            >
-              Iniciar sesión
-            </button>
-
-
-
-            <!-- MENSAJE -->
-
-            <div
-              id="login-message"
-              class="register-message"
-            ></div>
-
-
-
-            <!-- CAMBIAR A REGISTRO -->
-
-            <p class="login-text">
-
-              ¿Todavía no tenés una cuenta?
-
-              <button
-                type="button"
-                class="text-button"
-                id="go-register"
-              >
-                Registrate
-              </button>
-
-            </p>
-
-
-          </form>
+          </div>
 
         </div>
 
 
 
         <!-- =====================================
-             FORMULARIO REGISTRARSE
+             TARJETA
         ====================================== -->
 
-        <div
-          class="account-form"
-          id="register-section"
-        >
+        <div class="col-lg-6 col-xl-5">
 
-          <div class="form-header">
+          <div class="register-card">
 
-            <span class="form-label">
-              NUEVA CUENTA
-            </span>
 
-            <h2>
-              Registrarse
-            </h2>
+            <!-- =====================================
+                 PESTAÑAS (tabs de Bootstrap)
+                 data-bs-toggle="tab" cambia de pestaña solo
+            ====================================== -->
 
-            <p>
-              Completá tus datos para crear tu cuenta.
-            </p>
+            <ul class="nav nav-underline nav-fill account-tabs" role="tablist">
+
+              <li class="nav-item" role="presentation">
+
+                <button
+                  type="button"
+                  class="nav-link active"
+                  id="login-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#login-section"
+                  role="tab"
+                  aria-controls="login-section"
+                  aria-selected="true"
+                >
+                  Iniciar sesión
+                </button>
+
+              </li>
+
+              <li class="nav-item" role="presentation">
+
+                <button
+                  type="button"
+                  class="nav-link"
+                  id="register-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#register-section"
+                  role="tab"
+                  aria-controls="register-section"
+                  aria-selected="false"
+                >
+                  Registrarse
+                </button>
+
+              </li>
+
+            </ul>
+
+
+
+            <!-- CONTENIDO DE LAS PESTAÑAS -->
+
+            <div class="tab-content">
+
+
+              <!-- =====================================
+                   FORMULARIO INICIAR SESIÓN
+              ====================================== -->
+
+              <div
+                class="tab-pane fade show active"
+                id="login-section"
+                role="tabpanel"
+                aria-labelledby="login-tab"
+              >
+
+                <div class="form-header">
+
+                  <span class="form-label-top">
+                    MI CUENTA
+                  </span>
+
+                  <h2>
+                    Iniciar sesión
+                  </h2>
+
+                  <p>
+                    Ingresá tu correo electrónico y contraseña.
+                  </p>
+
+                </div>
+
+
+                <form
+                  id="login-form"
+                  novalidate
+                >
+
+
+                  <!-- EMAIL -->
+
+                  <div class="form-field mb-3">
+
+                    <label for="login-email" class="form-label">
+                      Correo electrónico
+                    </label>
+
+                    <input
+                      type="email"
+                      id="login-email"
+                      name="login-email"
+                      class="form-control"
+                      placeholder="ejemplo@correo.com"
+                      autocomplete="email"
+                    >
+
+                    <div class="invalid-feedback"></div>
+
+                  </div>
+
+
+
+                  <!-- CONTRASEÑA (input-group de Bootstrap) -->
+
+                  <div class="form-field mb-3">
+
+                    <label for="login-password" class="form-label">
+                      Contraseña
+                    </label>
+
+                    <div class="input-group has-validation">
+
+                      <input
+                        type="password"
+                        id="login-password"
+                        name="login-password"
+                        class="form-control"
+                        placeholder="Tu contraseña"
+                        autocomplete="current-password"
+                      >
+
+                      <button
+                        type="button"
+                        class="btn show-password"
+                        id="show-login-password"
+                      >
+                        Ver
+                      </button>
+
+                      <div class="invalid-feedback"></div>
+
+                    </div>
+
+                  </div>
+
+
+
+                  <!-- RECORDAR -->
+
+                  <div class="login-options">
+
+                    <div class="form-check">
+
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        id="recordarme"
+                      >
+
+                      <label class="form-check-label" for="recordarme">
+                        Recordarme
+                      </label>
+
+                    </div>
+
+
+                    <a
+                      href="#"
+                      id="forgot-password"
+                    >
+                      ¿Olvidaste tu contraseña?
+                    </a>
+
+                  </div>
+
+
+
+                  <!-- BOTÓN -->
+
+                  <button
+                    type="submit"
+                    class="btn register-btn w-100"
+                  >
+                    Iniciar sesión
+                  </button>
+
+
+
+                  <!-- MENSAJE (alerta de Bootstrap) -->
+
+                  <div
+                    id="login-message"
+                    class="alert d-none mt-3 mb-0 text-center"
+                    role="alert"
+                  ></div>
+
+
+
+                  <!-- CAMBIAR A REGISTRO -->
+
+                  <p class="login-text">
+
+                    ¿Todavía no tenés una cuenta?
+
+                    <button
+                      type="button"
+                      class="text-button"
+                      id="go-register"
+                    >
+                      Registrate
+                    </button>
+
+                  </p>
+
+
+                </form>
+
+              </div>
+
+
+
+              <!-- =====================================
+                   FORMULARIO REGISTRARSE
+              ====================================== -->
+
+              <div
+                class="tab-pane fade"
+                id="register-section"
+                role="tabpanel"
+                aria-labelledby="register-tab"
+              >
+
+                <div class="form-header">
+
+                  <span class="form-label-top">
+                    NUEVA CUENTA
+                  </span>
+
+                  <h2>
+                    Registrarse
+                  </h2>
+
+                  <p>
+                    Completá tus datos para crear tu cuenta.
+                  </p>
+
+                </div>
+
+
+                <form
+                  id="register-form"
+                  novalidate
+                >
+
+
+                  <!-- NOMBRE Y APELLIDO (lado a lado desde tablet) -->
+
+                  <div class="row g-sm-3">
+
+
+                    <div class="col-sm-6">
+
+                      <div class="form-field mb-3">
+
+                        <label for="nombre" class="form-label">
+                          Nombre
+                        </label>
+
+                        <input
+                          type="text"
+                          id="nombre"
+                          name="nombre"
+                          class="form-control"
+                          placeholder="Tu nombre"
+                          autocomplete="given-name"
+                        >
+
+                        <div class="invalid-feedback"></div>
+
+                      </div>
+
+                    </div>
+
+
+                    <div class="col-sm-6">
+
+                      <div class="form-field mb-3">
+
+                        <label for="apellido" class="form-label">
+                          Apellido
+                        </label>
+
+                        <input
+                          type="text"
+                          id="apellido"
+                          name="apellido"
+                          class="form-control"
+                          placeholder="Tu apellido"
+                          autocomplete="family-name"
+                        >
+
+                        <div class="invalid-feedback"></div>
+
+                      </div>
+
+                    </div>
+
+
+                  </div>
+
+
+
+                  <!-- EMAIL -->
+
+                  <div class="form-field mb-3">
+
+                    <label for="email" class="form-label">
+                      Correo electrónico
+                    </label>
+
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      class="form-control"
+                      placeholder="ejemplo@correo.com"
+                      autocomplete="email"
+                    >
+
+                    <div class="invalid-feedback"></div>
+
+                  </div>
+
+
+
+                  <!-- CONTRASEÑA -->
+
+                  <div class="form-field mb-3">
+
+                    <label for="password" class="form-label">
+                      Contraseña
+                    </label>
+
+                    <div class="input-group has-validation">
+
+                      <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        class="form-control"
+                        placeholder="Mínimo 8 caracteres"
+                        autocomplete="new-password"
+                      >
+
+                      <button
+                        type="button"
+                        class="btn show-password"
+                        id="show-password"
+                      >
+                        Ver
+                      </button>
+
+                      <div class="invalid-feedback"></div>
+
+                    </div>
+
+                  </div>
+
+
+
+                  <!-- CONFIRMAR CONTRASEÑA -->
+
+                  <div class="form-field mb-3">
+
+                    <label for="confirm-password" class="form-label">
+                      Confirmar contraseña
+                    </label>
+
+                    <div class="input-group has-validation">
+
+                      <input
+                        type="password"
+                        id="confirm-password"
+                        name="confirm-password"
+                        class="form-control"
+                        placeholder="Repetí tu contraseña"
+                        autocomplete="new-password"
+                      >
+
+                      <button
+                        type="button"
+                        class="btn show-password"
+                        id="show-confirm-password"
+                      >
+                        Ver
+                      </button>
+
+                      <div class="invalid-feedback"></div>
+
+                    </div>
+
+                  </div>
+
+
+
+                  <!-- TÉRMINOS (form-check de Bootstrap) -->
+
+                  <div class="form-check terms mb-3">
+
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      id="terminos"
+                      name="terminos"
+                    >
+
+                    <label class="form-check-label" for="terminos">
+
+                      Acepto los
+
+                      <a href="#">
+                        términos y condiciones
+                      </a>
+
+                      y la
+
+                      <a href="#">
+                        política de privacidad
+                      </a>.
+
+                    </label>
+
+                    <div class="invalid-feedback">
+                      Debés aceptar los términos y condiciones.
+                    </div>
+
+                  </div>
+
+
+
+                  <!-- BOTÓN -->
+
+                  <button
+                    type="submit"
+                    class="btn register-btn w-100"
+                  >
+                    Crear cuenta
+                  </button>
+
+
+
+                  <!-- MENSAJE (alerta de Bootstrap) -->
+
+                  <div
+                    id="register-message"
+                    class="alert d-none mt-3 mb-0 text-center"
+                    role="alert"
+                  ></div>
+
+
+
+                  <!-- CAMBIAR A LOGIN -->
+
+                  <p class="login-text">
+
+                    ¿Ya tenés una cuenta?
+
+                    <button
+                      type="button"
+                      class="text-button"
+                      id="go-login"
+                    >
+                      Iniciar sesión
+                    </button>
+
+                  </p>
+
+
+                </form>
+
+              </div>
+
+            </div>
 
           </div>
 
-
-          <form
-            id="register-form"
-            novalidate
-          >
-
-
-            <!-- NOMBRE Y APELLIDO -->
-
-            <div class="form-row">
-
-
-              <div class="form-group">
-
-                <label for="nombre">
-                  Nombre
-                </label>
-
-                <input
-                  type="text"
-                  id="nombre"
-                  name="nombre"
-                  placeholder="Tu nombre"
-                  autocomplete="given-name"
-                >
-
-                <small class="error-message"></small>
-
-              </div>
-
-
-              <div class="form-group">
-
-                <label for="apellido">
-                  Apellido
-                </label>
-
-                <input
-                  type="text"
-                  id="apellido"
-                  name="apellido"
-                  placeholder="Tu apellido"
-                  autocomplete="family-name"
-                >
-
-                <small class="error-message"></small>
-
-              </div>
-
-
-            </div>
-
-
-
-            <!-- EMAIL -->
-
-            <div class="form-group">
-
-              <label for="email">
-                Correo electrónico
-              </label>
-
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="ejemplo@correo.com"
-                autocomplete="email"
-              >
-
-              <small class="error-message"></small>
-
-            </div>
-
-
-
-            <!-- CONTRASEÑA -->
-
-            <div class="form-group">
-
-              <label for="password">
-                Contraseña
-              </label>
-
-              <div class="password-container">
-
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  placeholder="Mínimo 8 caracteres"
-                  autocomplete="new-password"
-                >
-
-                <button
-                  type="button"
-                  class="show-password"
-                  id="show-password"
-                >
-                  Ver
-                </button>
-
-              </div>
-
-              <small class="error-message"></small>
-
-            </div>
-
-
-
-            <!-- CONFIRMAR CONTRASEÑA -->
-
-            <div class="form-group">
-
-              <label for="confirm-password">
-                Confirmar contraseña
-              </label>
-
-              <div class="password-container">
-
-                <input
-                  type="password"
-                  id="confirm-password"
-                  name="confirm-password"
-                  placeholder="Repetí tu contraseña"
-                  autocomplete="new-password"
-                >
-
-                <button
-                  type="button"
-                  class="show-password"
-                  id="show-confirm-password"
-                >
-                  Ver
-                </button>
-
-              </div>
-
-              <small class="error-message"></small>
-
-            </div>
-
-
-
-            <!-- TÉRMINOS -->
-
-            <div class="terms">
-
-              <input
-                type="checkbox"
-                id="terminos"
-                name="terminos"
-              >
-
-              <label for="terminos">
-
-                Acepto los
-
-                <a href="#">
-                  términos y condiciones
-                </a>
-
-                y la
-
-                <a href="#">
-                  política de privacidad
-                </a>.
-
-              </label>
-
-            </div>
-
-
-            <small
-              class="terms-error"
-              id="terms-error"
-            ></small>
-
-
-
-            <!-- BOTÓN -->
-
-            <button
-              type="submit"
-              class="register-btn"
-            >
-              Crear cuenta
-            </button>
-
-
-
-            <!-- MENSAJE -->
-
-            <div
-              id="register-message"
-              class="register-message"
-            ></div>
-
-
-
-            <!-- CAMBIAR A LOGIN -->
-
-            <p class="login-text">
-
-              ¿Ya tenés una cuenta?
-
-              <button
-                type="button"
-                class="text-button"
-                id="go-login"
-              >
-                Iniciar sesión
-              </button>
-
-            </p>
-
-
-          </form>
-
         </div>
-
 
       </div>
 
-    </section>
+    </div>
 
   </main>
 
@@ -667,8 +753,14 @@
 
 
 
-  <!-- JAVASCRIPT -->
+  <!-- =========================================
+       JAVASCRIPT
+  ========================================== -->
 
+  <!-- Bootstrap (hamburguesa y pestañas) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Nuestro JS -->
   <script src="../js/Registros.js"></script>
 
 </body>

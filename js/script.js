@@ -726,7 +726,9 @@ function crearTarjetaLibro(book) {
 
   return `
 
-    <article class="book-card" data-id="${book.id}">
+    <div class="col">
+
+    <article class="book-card h-100" data-id="${book.id}">
 
       <div class="book-cover">
 
@@ -787,6 +789,28 @@ function crearTarjetaLibro(book) {
 
     </article>
 
+    </div>
+
+  `;
+
+}
+
+
+// ============================================
+// GRILLA DE BOOTSTRAP
+// row-cols-2     → 2 libros por fila en celular
+// row-cols-md-3  → 3 en tablet
+// row-cols-xl-4  → 4 en compu
+// row-cols-xxl-5 → 5 en pantallas grandes
+// g-3            → espacio entre tarjetas
+// ============================================
+
+function crearGrilla(libros) {
+
+  return `
+    <div class="row row-cols-2 row-cols-md-3 row-cols-xl-4 row-cols-xxl-5 g-3">
+      ${libros.map(crearTarjetaLibro).join('')}
+    </div>
   `;
 
 }
@@ -869,9 +893,7 @@ function renderBooks() {
 
     // MOSTRAR RESULTADOS
 
-    bookGrid.innerHTML = list
-      .map(crearTarjetaLibro)
-      .join('');
+    bookGrid.innerHTML = crearGrilla(list);
 
 
     return;
@@ -928,13 +950,7 @@ function renderBooks() {
             </h2>
 
 
-            <div class="collection-books">
-
-              ${libros
-                .map(crearTarjetaLibro)
-                .join('')}
-
-            </div>
+            ${crearGrilla(libros)}
 
           </div>
 
@@ -993,9 +1009,7 @@ function renderBooks() {
   // MOSTRAR LIBROS
   // ==========================================
 
-  bookGrid.innerHTML = list
-    .map(crearTarjetaLibro)
-    .join('');
+  bookGrid.innerHTML = crearGrilla(list);
 
 }
 

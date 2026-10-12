@@ -67,12 +67,14 @@ body {
 
 
 a {
+  color: inherit;
   text-decoration: none;
 }
 
 
 /* ============================================
-   HEADER
+   HEADER (navbar de Bootstrap)
+   El sticky lo hace la clase sticky-top
 ============================================ */
 
 .site-header {
@@ -81,10 +83,6 @@ a {
 
   color: #efe6d8;
 
-  position: sticky;
-
-  top: 0;
-
   z-index: 40;
 
   border-bottom: 1px solid #000;
@@ -92,31 +90,13 @@ a {
 }
 
 
-.header-inner {
-
-  max-width: 1440px;
-
-  margin: 0 auto;
-
-  padding: 8px 40px;
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 35px;
-
+.site-header .navbar {
+  padding: 6px 0;
 }
 
 
-.brand {
-
-  display: flex;
-
-  align-items: center;
-
-  flex-shrink: 0;
-
+.site-header .container-xxl {
+  padding: 0 40px;
 }
 
 
@@ -133,24 +113,13 @@ a {
 }
 
 
-.main-nav {
+/* LINKS DEL MENÚ */
 
-  display: flex;
-
-  gap: 30px;
-
-  flex: 1;
-
-}
-
-
-.main-nav a {
+.main-nav .nav-link {
 
   font-size: 14.5px;
 
   color: #cfc4b2;
-
-  padding-bottom: 4px;
 
   border-bottom: 2px solid transparent;
 
@@ -159,13 +128,21 @@ a {
 }
 
 
-.main-nav a:hover {
+.main-nav .nav-link:hover {
   color: #f4ede0;
 }
 
 
+/* VOLVER + HAMBURGUESA */
+
 .header-actions {
-  margin-left: auto;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
 }
 
 
@@ -177,11 +154,45 @@ a {
 
   font-weight: 600;
 
+  white-space: nowrap;
+
 }
 
 
 .back-link:hover {
   color: #e0bd6d;
+}
+
+
+.navbar-toggler {
+  border-color: #443a31;
+}
+
+
+/* COMPU: separación entre links */
+
+@media (min-width: 992px) {
+
+  .main-nav {
+    gap: 18px;
+  }
+
+}
+
+
+/* CELULAR Y TABLET */
+
+@media (max-width: 991.98px) {
+
+  .site-header .container-xxl {
+    padding: 0 18px;
+  }
+
+
+  .navbar-collapse {
+    padding: 12px 0;
+  }
+
 }
 
 
@@ -193,7 +204,7 @@ a {
 
   min-height: calc(100vh - 77px);
 
-  padding: 60px 40px 80px;
+  padding: 60px 0 80px;
 
   background:
     radial-gradient(
@@ -268,25 +279,14 @@ a {
 
 /* ============================================
    CONTENEDOR
+   (las columnas las hace row / col-lg-7 / col-lg-5)
 ============================================ */
 
 .payment-container {
 
-  width: 100%;
+  max-width: 1040px;
 
-  max-width: 1000px;
-
-  margin: auto;
-
-  display: grid;
-
-  grid-template-columns:
-    minmax(0, 1.1fr)
-    minmax(330px, .9fr);
-
-  gap: 30px;
-
-  align-items: start;
+  margin: 0 auto;
 
 }
 
@@ -352,6 +352,8 @@ a {
 }
 
 
+/* Lista de productos (list-group de Bootstrap) */
+
 .order-products {
 
   border-top: 1px solid var(--line);
@@ -371,7 +373,9 @@ a {
 
   padding: 17px 0;
 
-  border-bottom: 1px solid var(--line);
+  background: transparent;
+
+  border-color: var(--line);
 
 }
 
@@ -402,7 +406,7 @@ a {
 
   color: var(--muted);
 
-  font-size: 10px;
+  font-size: 11px;
 
 }
 
@@ -424,11 +428,22 @@ a {
 
   padding: 35px 0;
 
+  background: transparent;
+
   color: var(--muted);
 
   text-align: center;
 
   font-size: 13px;
+
+}
+
+
+.empty-cart a {
+
+  color: var(--blood);
+
+  font-weight: 700;
 
 }
 
@@ -446,6 +461,8 @@ a {
   align-items: center;
 
   padding: 25px 0 20px;
+
+  border-top: 1px solid var(--line);
 
 }
 
@@ -480,7 +497,7 @@ a {
 
   color: var(--blood);
 
-  font-size: 11px;
+  font-size: 12px;
 
   font-weight: 700;
 
@@ -537,7 +554,7 @@ a {
 
   color: var(--muted);
 
-  font-size: 8px;
+  font-size: 9px;
 
   font-weight: 700;
 
@@ -622,6 +639,10 @@ a {
 
   border-radius: 8px;
 
+  color: var(--muted);
+
+  font-size: 13px;
+
 }
 
 
@@ -660,7 +681,7 @@ a {
 
   color: var(--muted);
 
-  font-size: 8px;
+  font-size: 9px;
 
   font-weight: 700;
 
@@ -698,7 +719,7 @@ a {
 
   color: var(--muted);
 
-  font-size: 11px;
+  font-size: 12px;
 
 }
 
@@ -734,7 +755,7 @@ a {
 
   color: var(--muted);
 
-  font-size: 10px;
+  font-size: 11px;
 
   line-height: 1.6;
 
@@ -742,12 +763,10 @@ a {
 
 
 /* ============================================
-   BOTÓN SIMULACIÓN
+   BOTÓN SIMULACIÓN (btn de Bootstrap con nuestros colores)
 ============================================ */
 
 .simulate-btn {
-
-  width: 100%;
 
   height: 44px;
 
@@ -761,19 +780,20 @@ a {
 
   color: #fff;
 
-  font-family: var(--sans);
-
-  font-size: 11px;
+  font-size: 12px;
 
   font-weight: 700;
-
-  cursor: pointer;
 
 }
 
 
-.simulate-btn:hover {
+.simulate-btn:hover,
+.simulate-btn:focus {
+
   background: var(--blood-dark);
+
+  color: #fff;
+
 }
 
 
@@ -785,50 +805,22 @@ a {
 
   color: #93897d;
 
-  font-size: 8px;
+  font-size: 10px;
 
 }
 
 
 /* ============================================
-   MODAL APROBADO
+   MODAL PAGO APROBADO (modal de Bootstrap)
+   Bootstrap se encarga del fondo oscuro,
+   de centrarlo y de la animación.
 ============================================ */
-
-.payment-overlay {
-
-  position: fixed;
-
-  inset: 0;
-
-  z-index: 100;
-
-  display: none;
-
-  align-items: center;
-
-  justify-content: center;
-
-  padding: 20px;
-
-  background: rgba(23, 19, 15, .75);
-
-}
-
-
-.payment-overlay.open {
-  display: flex;
-}
-
 
 .success-modal {
 
-  width: 100%;
-
-  max-width: 420px;
-
   padding: 45px 35px;
 
-  background: #fff;
+  border: none;
 
   border-radius: 10px;
 
@@ -871,7 +863,7 @@ a {
 
   color: var(--green);
 
-  font-size: 9px;
+  font-size: 10px;
 
   font-weight: 700;
 
@@ -897,7 +889,7 @@ a {
 
   color: var(--muted);
 
-  font-size: 12px;
+  font-size: 13px;
 
 }
 
@@ -923,7 +915,7 @@ a {
 
   color: var(--muted);
 
-  font-size: 9px;
+  font-size: 10px;
 
 }
 
@@ -932,20 +924,22 @@ a {
 
   color: var(--ink);
 
-  font-size: 15px;
+  font-size: 16px;
 
 }
 
 
 .return-home {
 
-  display: flex;
-
   height: 46px;
+
+  display: flex;
 
   align-items: center;
 
   justify-content: center;
+
+  border: none;
 
   border-radius: 5px;
 
@@ -953,9 +947,19 @@ a {
 
   color: #fff;
 
-  font-size: 12px;
+  font-size: 13px;
 
   font-weight: 700;
+
+}
+
+
+.return-home:hover,
+.return-home:focus {
+
+  background: var(--blood-dark);
+
+  color: #fff;
 
 }
 
@@ -979,42 +983,25 @@ a {
 }
 
 
-/* ============================================
-   RESPONSIVE
-============================================ */
-
-@media(max-width: 850px) {
-
-  .main-nav {
-    display: none;
-  }
-
-
-  .payment-container {
-
-    max-width: 600px;
-
-    grid-template-columns: 1fr;
-
-  }
-
+.site-footer p {
+  margin: 0;
 }
 
 
-@media(max-width: 600px) {
+/* ============================================
+   RESPONSIVE
+   (las columnas ya se acomodan con Bootstrap)
+============================================ */
 
-  .header-inner {
-    padding: 8px 18px;
-  }
-
+@media (max-width: 600px) {
 
   .back-link {
-    font-size: 10px;
+    font-size: 11px;
   }
 
 
   .payment-page {
-    padding: 40px 18px 60px;
+    padding: 40px 0 60px;
   }
 
 

@@ -27,7 +27,17 @@
     rel="stylesheet"
   >
 
-  <!-- CSS -->
+
+  <!-- BOOTSTRAP -->
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+  >
+
+
+  <!-- CSS PROPIO (siempre después de Bootstrap) -->
+
   <link rel="stylesheet" href="../css/Pago.css">
 
 </head>
@@ -37,63 +47,75 @@
 
 
   <!-- ============================================
-       HEADER
+       HEADER (navbar de Bootstrap)
   ============================================= -->
 
-  <header class="site-header">
+  <header class="site-header sticky-top">
 
-    <div class="header-inner">
+    <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Navegación principal">
 
-      <!-- LOGO -->
-
-      <a href="../index.html" class="brand">
-
-        <img
-          src="../imagenes/logo.png"
-          alt="Logo Derry Books"
-          class="brand-logo"
-        >
-
-      </a>
+      <div class="container-xxl">
 
 
-      <!-- NAVEGACIÓN -->
+        <!-- LOGO -->
 
-      <nav class="main-nav">
-
-        <a href="../index.html">
-          Inicio
+        <a class="navbar-brand py-0" href="../index.html">
+          <img src="../imagenes/logo.png" alt="Logo Derry Books" class="brand-logo">
         </a>
 
-        <a href="../index.html#libros">
-          Libros
-        </a>
 
-        <a href="../paginas/SobreKing.html">
-          Sobre Stephen King
-        </a>
+        <!-- SIEMPRE VISIBLES: volver + hamburguesa -->
 
-        <a href="../paginas/Contacto.html">
-          Contacto
-        </a>
+        <div class="header-actions order-lg-last ms-auto ms-lg-3">
 
-      </nav>
+          <a href="../index.html" class="back-link">
+            ← Volver a la tienda
+          </a>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#menu-principal"
+            aria-controls="menu-principal"
+            aria-expanded="false"
+            aria-label="Abrir menú"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+        </div>
 
 
-      <!-- VOLVER -->
+        <!-- MENÚ DESPLEGABLE -->
 
-      <div class="header-actions">
+        <div class="collapse navbar-collapse" id="menu-principal">
 
-        <a
-          href="../index.html"
-          class="back-link"
-        >
-          ← Volver a la tienda
-        </a>
+          <ul class="navbar-nav me-auto main-nav">
+
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">Inicio</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html#libros">Libros</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="SobreKing.html">Sobre Stephen King</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="Contacto.html">Contacto</a>
+            </li>
+
+          </ul>
+
+        </div>
 
       </div>
 
-    </div>
+    </nav>
 
   </header>
 
@@ -105,258 +127,277 @@
 
   <main class="payment-page">
 
-
-    <!-- ENCABEZADO -->
-
-    <section class="payment-heading">
-
-      <span class="eyebrow">
-        DERRY BOOKS
-      </span>
-
-      <h1>
-        Finalizar compra
-      </h1>
-
-      <p>
-        Revisá tu pedido y escaneá el código QR
-        para continuar con el pago.
-      </p>
-
-    </section>
+    <div class="container">
 
 
+      <!-- ENCABEZADO -->
 
-    <!-- ============================================
-         CONTENIDO
-    ============================================= -->
+      <section class="payment-heading">
 
-    <section class="payment-container">
+        <span class="eyebrow">
+          DERRY BOOKS
+        </span>
 
+        <h1>
+          Finalizar compra
+        </h1>
 
-      <!-- ============================================
-           RESUMEN DEL PEDIDO
-      ============================================= -->
-
-      <div class="order-card">
-
-        <div class="card-heading">
-
-          <span>
-            TU COMPRA
-          </span>
-
-          <h2>
-            Resumen del pedido
-          </h2>
-
-        </div>
-
-
-        <!-- PRODUCTOS -->
-
-        <div
-          class="order-products"
-          id="order-products"
-        >
-
-          <!-- JavaScript agrega los productos acá -->
-
-        </div>
-
-
-        <!-- TOTAL -->
-
-        <div class="order-total">
-
-          <span>
-            Total
-          </span>
-
-          <strong id="order-total">
-            $ 0
-          </strong>
-
-        </div>
-
-
-        <!-- VOLVER -->
-
-        <a
-          href="../index.html#libros"
-          class="continue-shopping"
-        >
-          ← Seguir comprando
-        </a>
-
-      </div>
-
-
-
-      <!-- ============================================
-           MERCADO PAGO
-      ============================================= -->
-
-      <div class="payment-card">
-
-
-        <div class="mercado-header">
-
-          <div class="mp-icon">
-            MP
-          </div>
-
-          <div>
-
-            <span>
-              MÉTODO DE PAGO
-            </span>
-
-            <h2>
-              Mercado Pago
-            </h2>
-
-          </div>
-
-        </div>
-
-
-        <div class="payment-divider"></div>
-
-
-        <p class="qr-description">
-          Escaneá el código QR desde Mercado Pago
-          para realizar el pago.
+        <p>
+          Revisá tu pedido y escaneá el código QR
+          para continuar con el pago.
         </p>
+
+      </section>
+
+
+
+      <!-- ============================================
+           GRILLA DE BOOTSTRAP
+           compu: resumen 7 columnas + pago 5 columnas
+           celular: el resumen arriba y el pago abajo
+      ============================================= -->
+
+      <section class="row g-4 justify-content-center payment-container">
+
+
+        <!-- ============================================
+             RESUMEN DEL PEDIDO
+        ============================================= -->
+
+        <div class="col-lg-7">
+
+          <div class="order-card h-100">
+
+            <div class="card-heading">
+
+              <span>
+                TU COMPRA
+              </span>
+
+              <h2>
+                Resumen del pedido
+              </h2>
+
+            </div>
+
+
+            <!-- PRODUCTOS (list-group de Bootstrap, lo llena JavaScript) -->
+
+            <ul
+              class="list-group list-group-flush order-products"
+              id="order-products"
+            >
+            </ul>
+
+
+            <!-- TOTAL -->
+
+            <div class="order-total">
+
+              <span>
+                Total
+              </span>
+
+              <strong id="order-total">
+                $ 0
+              </strong>
+
+            </div>
+
+
+            <!-- VOLVER -->
+
+            <a
+              href="../index.html#libros"
+              class="continue-shopping"
+            >
+              ← Seguir comprando
+            </a>
+
+          </div>
+
+        </div>
 
 
 
         <!-- ============================================
-             QR
+             MERCADO PAGO
         ============================================= -->
 
-        <div class="qr-container">
+        <div class="col-md-9 col-lg-5">
 
-          <div
-            class="qr-box"
-            id="qr-code"
-          ></div>
+          <div class="payment-card h-100">
+
+
+            <div class="mercado-header">
+
+              <div class="mp-icon">
+                MP
+              </div>
+
+              <div>
+
+                <span>
+                  MÉTODO DE PAGO
+                </span>
+
+                <h2>
+                  Mercado Pago
+                </h2>
+
+              </div>
+
+            </div>
+
+
+            <div class="payment-divider"></div>
+
+
+            <p class="qr-description">
+              Escaneá el código QR desde Mercado Pago
+              para realizar el pago.
+            </p>
+
+
+
+            <!-- QR -->
+
+            <div class="qr-container">
+
+              <div
+                class="qr-box"
+                id="qr-code"
+              ></div>
+
+            </div>
+
+
+
+            <!-- TOTAL A PAGAR -->
+
+            <div class="amount-box">
+
+              <span>
+                TOTAL A PAGAR
+              </span>
+
+              <strong id="payment-total">
+                $ 0
+              </strong>
+
+            </div>
+
+
+
+            <!-- ESTADO -->
+
+            <div
+              class="payment-status"
+              id="payment-status"
+            >
+
+              <span class="status-dot"></span>
+
+              Esperando el pago...
+
+            </div>
+
+
+
+            <!-- AVISO -->
+
+            <p class="payment-help">
+              Abrí Mercado Pago desde tu celular,
+              seleccioná la opción para escanear QR
+              y apuntá la cámara al código.
+            </p>
+
+
+            <!-- BOTÓN DEMOSTRACIÓN -->
+
+            <button
+              type="button"
+              id="simulate-payment"
+              class="btn simulate-btn w-100"
+            >
+              Simular pago aprobado
+            </button>
+
+
+            <small class="demo-warning">
+              Función de demostración para el proyecto.
+            </small>
+
+          </div>
 
         </div>
 
 
+      </section>
 
-        <!-- TOTAL A PAGAR -->
-
-        <div class="amount-box">
-
-          <span>
-            TOTAL A PAGAR
-          </span>
-
-          <strong id="payment-total">
-            $ 0
-          </strong>
-
-        </div>
-
-
-
-        <!-- ESTADO -->
-
-        <div
-          class="payment-status"
-          id="payment-status"
-        >
-
-          <span class="status-dot"></span>
-
-          Esperando el pago...
-
-        </div>
-
-
-
-        <!-- AVISO -->
-
-        <p class="payment-help">
-          Abrí Mercado Pago desde tu celular,
-          seleccioná la opción para escanear QR
-          y apuntá la cámara al código.
-        </p>
-
-
-        <!-- BOTÓN DEMOSTRACIÓN -->
-
-        <button
-          type="button"
-          id="simulate-payment"
-          class="simulate-btn"
-        >
-          Simular pago aprobado
-        </button>
-
-
-        <small class="demo-warning">
-          Función de demostración para el proyecto.
-        </small>
-
-      </div>
-
-
-    </section>
-
+    </div>
 
   </main>
 
 
 
   <!-- ============================================
-       MODAL PAGO APROBADO
+       MODAL PAGO APROBADO (modal de Bootstrap)
+       data-bs-backdrop="static": no se cierra
+       tocando afuera, solo con el botón
   ============================================= -->
 
   <div
-    class="payment-overlay"
-    id="payment-overlay"
+    class="modal fade"
+    id="payment-modal"
+    tabindex="-1"
+    aria-labelledby="payment-modal-title"
+    aria-hidden="true"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
   >
 
-    <div class="success-modal">
+    <div class="modal-dialog modal-dialog-centered">
 
-      <div class="success-icon">
-        ✓
-      </div>
+      <div class="modal-content success-modal">
 
-      <span class="success-label">
-        PAGO APROBADO
-      </span>
+        <div class="success-icon">
+          ✓
+        </div>
 
-      <h2>
-        ¡Gracias por tu compra!
-      </h2>
-
-      <p>
-        Tu pago fue procesado correctamente.
-      </p>
-
-      <div class="purchase-number">
-
-        <span>
-          Número de pedido
+        <span class="success-label">
+          PAGO APROBADO
         </span>
 
-        <strong id="purchase-number">
-          DB-000000
-        </strong>
+        <h2 id="payment-modal-title">
+          ¡Gracias por tu compra!
+        </h2>
+
+        <p>
+          Tu pago fue procesado correctamente.
+        </p>
+
+        <div class="purchase-number">
+
+          <span>
+            Número de pedido
+          </span>
+
+          <strong id="purchase-number">
+            DB-000000
+          </strong>
+
+        </div>
+
+        <a
+          href="../index.html"
+          class="btn return-home w-100"
+          id="return-home"
+        >
+          Volver a Derry Books
+        </a>
 
       </div>
-
-      <a
-        href="../index.html"
-        class="return-home"
-        id="return-home"
-      >
-        Volver a Derry Books
-      </a>
 
     </div>
 
@@ -379,17 +420,16 @@
 
 
   <!-- ============================================
-       LIBRERÍA PARA GENERAR QR
-       Solo se usa para la demostración visual
+       JAVASCRIPT
   ============================================= -->
 
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
-  </script>
+  <!-- Bootstrap (hamburguesa y modal) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+  <!-- Librería para generar el QR (solo demostración) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-  <!-- JAVASCRIPT -->
-
+  <!-- Nuestro JS -->
   <script src="../js/Pago.js"></script>
 
 
