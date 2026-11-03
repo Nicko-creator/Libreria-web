@@ -1,4 +1,10 @@
 // ============================================
+// CONEXIÓN CON LARAVEL
+// ============================================
+
+const API_CONTACTO = 'http://127.0.0.1:8000/api/contacto';
+
+// ============================================
 // FORMULARIO DE CONTACTO
 // ============================================
 
@@ -70,7 +76,7 @@ function ocultarMensaje() {
 // ENVIAR FORMULARIO
 // ============================================
 
-contactForm.addEventListener("submit", function(event) {
+contactForm.addEventListener("submit", async function(event) {
 
   // Evita que la página se recargue
   event.preventDefault();
@@ -195,21 +201,48 @@ contactForm.addEventListener("submit", function(event) {
   // FORMULARIO CORRECTO
   // ==========================================
 
-  mostrarMensaje(
-    `Gracias ${nombre.value.trim()}. Tu consulta fue registrada correctamente.`,
-    "success"
-  );
+    // ==========================================
+  // ENVIAR CONSULTA A LARAVEL
+  // ==========================================
 
+  try {
+    const respuesta = await fetch(API_CONTACTO, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        nombre: nombre.value.trim(),
+        email: email.value.trim(),
+        asunto: asunto.value,
+        mensaje: mensaje.value.trim()
+      })
+    });
 
-  /*
-    Más adelante, cuando Diego tenga Laravel listo,
-    acá se van a enviar los datos al backend.
-  */
+    const datos = await respuesta.json();
 
+    if (!respuesta.ok) {
+      throw new Error(
+        datos.message || "No se pudo enviar la consulta."
+      );
+    }
 
-  // Limpiar formulario
+    mostrarMensaje(
+      `Gracias ${nombre.value.trim()}. Tu consulta fue registrada correctamente.`,
+      "success"
+    );
 
-  contactForm.reset();
+    contactForm.reset();
+
+  } catch (error) {
+    console.error("Error al enviar la consulta:", error);
+
+    mostrarMensaje(
+      "No se pudo enviar tu consulta. Intentá nuevamente.",
+      "danger"
+    );
+  }
 
 });
 

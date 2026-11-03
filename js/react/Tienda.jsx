@@ -610,7 +610,7 @@ function GrillaLibros({ libros, favoritos, onFavorito, onAgregar }) {
 // y la categoría
 // ============================================
 
-function Catalogo({ categoria, busqueda, favoritos, onFavorito, onAgregar }) {
+function Catalogo({ libros, categoria, busqueda, favoritos, onFavorito, onAgregar }) {
 
   // Agrupamos las props que se repiten
 
@@ -623,7 +623,7 @@ function Catalogo({ categoria, busqueda, favoritos, onFavorito, onAgregar }) {
 
     const termino = busqueda.toLowerCase().trim();
 
-    const resultados = BOOKS.filter(libro =>
+    const resultados = libros.filter(libro =>
       coincideBusqueda(libro, termino)
     );
 
@@ -654,7 +654,7 @@ function Catalogo({ categoria, busqueda, favoritos, onFavorito, onAgregar }) {
 
   if (categoria === 'colecciones') {
 
-    const librosColeccion = BOOKS.filter(libro =>
+    const librosColeccion = libros.filter(libro =>
       libro.cat === 'colecciones'
     );
 
@@ -686,8 +686,8 @@ function Catalogo({ categoria, busqueda, favoritos, onFavorito, onAgregar }) {
   // ---------- TODOS / CATEGORÍA ----------
 
   const lista = categoria === 'todos'
-    ? BOOKS.filter(libro => !CATEGORIAS_APARTE.includes(libro.cat))
-    : BOOKS.filter(libro => libro.cat === categoria);
+    ? libros.filter(libro => !CATEGORIAS_APARTE.includes(libro.cat))
+    : libros.filter(libro => libro.cat === categoria);
 
 
   return <GrillaLibros libros={lista} {...propsGrilla} />;
@@ -838,6 +838,8 @@ function Tienda() {
 
   // ---------- ESTADO ----------
 
+const [libros, setLibros] = useState([]);
+
   const [categoria, setCategoria] = useState('todos');
 
   const [busqueda, setBusqueda] = useState('');
@@ -846,6 +848,35 @@ function Tienda() {
 
   const [carrito, setCarrito] = useState(leerCarritoGuardado);
 
+
+// ---------- CARGAR LIBROS DESDE LARAVEL ----------
+
+useEffect(() => {
+
+  fetch('http://127.0.0.1:8000/api/libros')
+    .then(respuesta => {
+      if (!respuesta.ok) {
+        throw new Error('No se pudieron cargar los libros');
+      }
+      return respuesta.json();
+    })
+    .then(datos => {
+
+      const librosAdaptados = datos.libros.map(libro => ({
+  ...libro,
+  backendId: libro.id,
+  id: libro.frontend_id,
+  price: Number(libro.price)
+}));
+
+      setLibros(librosAdaptados);
+
+    })
+    .catch(error => {
+      console.error('Error al cargar los libros:', error);
+    });
+
+}, []);
 
   // ---------- GUARDAR EL CARRITO ----------
   // Cada vez que cambia el carrito, lo guardamos
@@ -909,7 +940,13 @@ function Tienda() {
 
       setCarrito([
         ...carrito,
-        { id: libro.id, title: libro.title, price: libro.price, qty: 1 }
+        {
+  id: libro.id,
+  backendId: libro.backendId,
+  title: libro.title,
+  price: libro.price,
+  qty: 1
+}
       ]);
 
     }
@@ -986,6 +1023,7 @@ function Tienda() {
 
 
             <Catalogo
+              libros={libros}
               categoria={categoria}
               busqueda={busqueda}
               favoritos={favoritos}
