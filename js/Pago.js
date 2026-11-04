@@ -1,3 +1,11 @@
+
+// ============================================
+// CONEXIÓN CON LARAVEL
+// ============================================
+
+const API_PEDIDOS = 'http://127.0.0.1:8000/api/pedidos';
+
+
 // ============================================
 // ELEMENTOS
 // ============================================
@@ -273,6 +281,42 @@ function generarNumeroPedido() {
 
 }
 
+// ============================================
+// REGISTRAR PEDIDO EN LARAVEL
+// ============================================
+
+async function registrarPedido() {
+
+  const items = cart.map(item => ({
+    id: Number(item.backendId),
+    cantidad: item.qty
+  }));
+
+  if (items.some(item => !Number.isInteger(item.id) || item.id <= 0)) {
+    throw new Error(
+      'Hay productos sin identificador de Laravel. Vacía el carrito y agrégalos nuevamente.'
+    );
+  }
+
+  const respuesta = await fetch(API_PEDIDOS, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify({ items })
+  });
+
+  const datos = await respuesta.json();
+
+  if (!respuesta.ok) {
+    throw new Error(
+      datos.message || 'No se pudo registrar el pedido.'
+    );
+  }
+
+  return datos;
+}
 
 // ============================================
 // SIMULAR PAGO
@@ -280,7 +324,7 @@ function generarNumeroPedido() {
 
 simulatePayment.addEventListener(
   'click',
-  () => {
+ async () => {
 
     if (cart.length === 0) {
 
@@ -291,7 +335,18 @@ simulatePayment.addEventListener(
       return;
 
     }
+    simulatePayment.disabled = true;
 
+    let pedido;
+
+    try {
+      pedido = await registrarPedido();
+    } catch (error) {
+      console.error('Error al registrar el pedido:', error);
+      alert('No se pudo registrar el pedido: ' + error.message);
+      simulatePayment.disabled = false;
+      return;
+    }
 
     paymentStatus.classList.add(
       'approved'
@@ -308,7 +363,7 @@ simulatePayment.addEventListener(
 
 
     purchaseNumber.textContent =
-      generarNumeroPedido();
+      pedido.numero_pedido;
 
 
     // ABRIR EL MODAL DE BOOTSTRAP

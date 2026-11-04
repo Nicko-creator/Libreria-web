@@ -1,1 +1,6 @@
 .DS_Store
+Archivos locales de Laravel
+
+/backend/.env
+/backend/.phpunit.result.cache
+/backend/vendor/

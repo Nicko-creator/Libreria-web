@@ -1,4 +1,10 @@
 // ============================================
+// CONEXIÓN CON LARAVEL
+// ============================================
+
+const API_REGISTRO = 'http://127.0.0.1:8000/api/registro';
+const API_LOGIN = 'http://127.0.0.1:8000/api/login';
+// ============================================
 // PESTAÑAS (tabs de Bootstrap)
 // ============================================
 //
@@ -239,7 +245,7 @@ configurarBotonPassword(
 
 loginForm.addEventListener(
   'submit',
-  event => {
+  async  event => {
 
     event.preventDefault();
 
@@ -315,34 +321,69 @@ loginForm.addEventListener(
     }
 
 
-    // LOGIN CORRECTO EN FRONTEND
+        // ========================================
+    // INICIAR SESIÓN CON LARAVEL
+    // ========================================
 
-    mostrarMensaje(
-      loginMessage,
-      '✓ Datos completados correctamente.',
-      'success'
-    );
+    try {
 
+      const respuesta = await fetch(API_LOGIN, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          email: loginEmail.value.trim(),
+          password: loginPassword.value
+        })
+      });
 
-    console.log({
+      const datos = await respuesta.json();
 
-      email: loginEmail.value.trim()
+      if (!respuesta.ok) {
+        throw new Error(
+          datos.mensaje || datos.message ||
+          'No se pudo iniciar sesión.'
+        );
+      }
 
-    });
+      // Guardar la sesión de demostración
+      sessionStorage.setItem(
+        'derryBooksToken',
+        datos.token
+      );
 
+      sessionStorage.setItem(
+        'derryBooksUsuario',
+        JSON.stringify(datos.usuario)
+      );
 
-    /*
-      IMPORTANTE:
+      mostrarMensaje(
+        loginMessage,
+        '✓ ¡Bienvenido, ' + datos.usuario.nombre + '!',
+        'success'
+      );
 
-      Por ahora solamente validamos el formulario.
+      loginPassword.value = '';
 
-      Más adelante Diego conectará este formulario
-      con Laravel y MySQL para comprobar realmente
-      si el usuario y la contraseña existen.
-    */
+    } catch (error) {
+
+      console.error('Error al iniciar sesión:', error);
+
+      mostrarMensaje(
+        loginMessage,
+        error.message,
+        'danger'
+      );
+
+      return;
+    }
 
   }
 );
+
+
 
 
 // ============================================
@@ -402,7 +443,7 @@ configurarBotonPassword(
 
 registerForm.addEventListener(
   'submit',
-  event => {
+ async event => {
 
     event.preventDefault();
 
@@ -595,33 +636,55 @@ registerForm.addEventListener(
 
 
     // ========================================
-    // REGISTRO CORRECTO
-    // ========================================
+// REGISTRAR USUARIO EN LARAVEL
+// ========================================
 
-    mostrarMensaje(
-      registerMessage,
-      '✓ Cuenta creada correctamente.',
-      'success'
-    );
+try {
 
-
-    console.log({
-
+  const respuesta = await fetch(API_REGISTRO, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify({
       nombre: nombre.value.trim(),
-
       apellido: apellido.value.trim(),
+      email: email.value.trim(),
+      password: password.value,
+      password_confirmation: confirmPassword.value
+    })
+  });
 
-      email: email.value.trim()
+  const datos = await respuesta.json();
 
-    });
+  if (!respuesta.ok) {
 
+    const errores = datos.errors
+      ? Object.values(datos.errors).flat().join(' ')
+      : datos.message || 'No se pudo crear la cuenta.';
 
-    /*
-      POR AHORA NO GUARDAMOS LA CONTRASEÑA.
+    throw new Error(errores);
+  }
 
-      Cuando Diego tenga Laravel + MySQL,
-      estos datos se enviarán al backend.
-    */
+  mostrarMensaje(
+    registerMessage,
+    '✓ Cuenta creada correctamente.',
+    'success'
+  );
+
+} catch (error) {
+
+  console.error('Error al registrar usuario:', error);
+
+  mostrarMensaje(
+    registerMessage,
+    error.message,
+    'danger'
+  );
+
+  return;
+}
 
 
     // LIMPIAR FORMULARIO
